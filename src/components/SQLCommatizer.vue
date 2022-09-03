@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     addCommas: function() {
-      if (this.input === "" || this.input === null || this.input === undefined) {
+      if (this.input === "" || this.input === null || this.input.replaceAll(" ", "") === "") {
         return
       }
       let records = this.input.split("\n")
