@@ -1,46 +1,73 @@
 <template>
-  <div class="main">
-    <wired-card elevation="5">
-      <h1>SQL Commatizer</h1>
-    </wired-card>
-    <form @submit.prevent="addCommas">
-    <div class="controls">
-      <div>
-        <wired-checkbox id="processStringsCheckbox">For strings (add single quotes)</wired-checkbox>
+  <div>
+    <section class="hero is-info is-small">
+      <div class="hero-body">
+        <p class="title">
+          SQLCommatize
+        </p>
+        <p class="subtitle">
+          Simple online tool that add commas (and optionally single quotes) to given input - so it can be later used within SQL IN clause.<br> Supports leading/trailing comma styling.
+        </p>
       </div>
-      <div>
-        <wired-checkbox id="useLeadingCommasCheckbox">Use leading commas</wired-checkbox>
-      </div>
-    </div>
-      <p>Input</p>
-      <wired-textarea placeholder="Paste data here" rows="10" columns="50" ref="input"></wired-textarea>
-      <br>
-      <p>Output</p>
-      <RowsOutput :output="output"></RowsOutput>
-      <br>
-      <button>Add commas</button>
-    </form>
+    </section>
+    <section class="section is-centered">
+      <div class="container">
+        <b-field>
+          <b-switch v-model="processStrings" type="is-info">
+            For strings (add single quotes)
+          </b-switch>
+        </b-field>
+        <b-field>
+          <b-switch v-model="useLeadingCommas" type="is-info">
+            Use leading commas
+          </b-switch>
+        </b-field>
+        <b-field>
+          <b-input type="textarea"
+                   size="is-medium"
+                   placeholder="Paste your rows here"
+                   v-model="input"
+          >
 
+          </b-input>
+        </b-field>
+        <b-field>
+          <b-button type="is-info" expanded @click="addCommas">Add commas</b-button>
+        </b-field>
+        <b-field>
+          <b-input type="textarea"
+                   size="is-medium"
+                   placeholder="Output"
+                   v-model="output"
+          >
+
+          </b-input>
+        </b-field>
+      </div>
+
+    </section>
   </div>
+
 </template>
 
 <script>
 import "wired-elements";
-import RowsOutput from "@/components/RowsOutput";
 
 export default {
   name: 'App',
-  components: {RowsOutput,},
   data: function() {
     return {
+      processStrings: false,
+      useLeadingCommas: false,
+      input: null,
       output: null,
     }
   },
   methods: {
     addCommas: function() {
-      const input = this.$refs.input.value
-      const processStrings = document.getElementById("processStringsCheckbox").checked
-      const useLeadingCommas = document.getElementById("useLeadingCommasCheckbox").checked
+      const input = this.input
+      const processStrings = this.processStrings
+      const useLeadingCommas = this.useLeadingCommas
       if (input === "" || input === null || input.replaceAll(" ", "") === "") {
         return
       }
@@ -53,7 +80,6 @@ export default {
 
       if (!useLeadingCommas) {
         this.output = records.join(",\n")
-        console.log(this.output)
         return
       }
 
@@ -61,30 +87,18 @@ export default {
         this.output = records[0]
       }
 
-      const res = records
+      this.output = records
           .slice(0, 1)
           .map(x => ` ${x}`)
           .concat(records.slice(1).map(x => `,${x}`))
           .join("\n")
-      console.log(res)
-      this.output = res
     },
   }
 };
 </script>
 
 <style>
-.main {
-  font-family: "Gloria Hallelujah", cursive;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.controls {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+/*#app {*/
+/*  margin-top: 50px;*/
+/*}*/
 </style>
