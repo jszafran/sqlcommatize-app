@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <v-checkbox label="For strings (add single quotes)" v-model="processStrings"></v-checkbox>
-    <v-checkbox label="Use leading commas" v-model="useLeadingCommas"></v-checkbox>
+  <div class="main">
+    <form @submit.prevent="addCommas">
+      <input type="checkbox" id="process-strings" name="process-strings" v-model="processStrings">
+      <label for="process-strings">For strings (add single quotes)</label><br>
+      <input type="checkbox" id="leading-commas" name="leading-commas" v-model="useLeadingCommas">
+      <label for="leading-commas">Use leading commas</label><br>
+      <br>
+      <p>Input</p>
+      <textarea rows="10" cols="50" v-model="input"></textarea>
+      <br><br>
+      <p>Output</p>
+      <textarea rows="10" cols="50" v-model="output"></textarea>
+      <button>Add commas</button>
+    </form>
 
-    <p>Input</p>
-    <v-textarea v-model="input"></v-textarea>
-    <v-btn @click="addCommas">Add commas</v-btn>
-    <p>Output</p>
-    <v-textarea :value="output"></v-textarea>
   </div>
 </template>
 
@@ -40,13 +46,19 @@ export default {
         this.output = records[0]
       }
 
-      records = records.slice(0, 1).concat(records.slice(1).map(x => `,${x}`))
-      this.output = records.join("\n")
+      this.output = records
+          .slice(0, 1)
+          .concat(records.slice(1).map(x => `,${x}`))
+          .join("\n")
     },
   }
 }
 </script>
 
 <style scoped>
+.main {
+  margin-top: 100px;
+  margin-left: 100px;
 
+}
 </style>
