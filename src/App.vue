@@ -28,7 +28,6 @@
                    placeholder="Paste your rows here"
                    v-model="input"
           >
-
           </b-input>
         </b-field>
         <b-field>
@@ -40,7 +39,6 @@
                    placeholder="Output"
                    v-model="output"
           >
-
           </b-input>
         </b-field>
       </div>
@@ -98,7 +96,5 @@ export default {
 </script>
 
 <style>
-/*#app {*/
-/*  margin-top: 50px;*/
-/*}*/
+
 </style>
