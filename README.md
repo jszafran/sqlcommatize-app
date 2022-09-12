@@ -1,24 +1,9 @@
-# sqlcommatize
+# SQLCommatize vue app
 
-## Project setup
-```
-npm install
-```
+Online version of [SQLCommatize](https://github.com/jszafran/sqlcommatize) tool (originally written in Golang as a CLI).
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Try it here:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+[https://jszafran.github.io/sqlcommatize-app](https://jszafran.github.io/sqlcommatize-app])
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+App is written in VueJS 2 & Buefy.
