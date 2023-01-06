@@ -4,6 +4,6 @@ Online version of [SQLCommatize](https://github.com/jszafran/sqlcommatize) tool 
 
 Try it here:
 
-[https://jszafran.github.io/sqlcommatize-app](https://jszafran.github.io/sqlcommatize-app])
+[Live Demo](https://jszafran.github.io/sqlcommatize-app)
 
 App is written in VueJS 2 & Buefy.
